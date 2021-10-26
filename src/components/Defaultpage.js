@@ -1,7 +1,9 @@
 import React from 'react'
 import {useState} from 'react'
+import {useHistory} from "react-router-dom";
 
 const Defaultpage = () => {
+    const history = useHistory();
     const [formLogin, setFormLogin] = useState({
             email: '',
             password: ''
@@ -23,7 +25,13 @@ const Defaultpage = () => {
             body: JSON.stringify(formLogin)
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if (data)
+                {history.push("/dashboard")}
+            else
+                alert("Wrong Password")
+            
+        })
     }
 
 

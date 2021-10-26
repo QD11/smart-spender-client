@@ -6,10 +6,13 @@ const Navbar = ({show}) => {
         <SideNav showBar={show}>
             <SideUL>
                 <SideLI>
-                    <SideA href='/'>Home</SideA>
+                    <SideA href='/'>Dashboard</SideA>
                 </SideLI>
                 <SideLI>
-                    <SideA href='/'>About Us</SideA>
+                    <SideA href='/'>Expenses</SideA>
+                </SideLI>
+                <SideLI>
+                    <SideA href='/'>Budget</SideA>
                 </SideLI>
                 <SideLI>
                     <SideA href='/'>Contact Us</SideA>

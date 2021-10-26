@@ -12,7 +12,7 @@ function App() {
     return (
         <div>
             <Switch>
-                <Route exact path="/home">
+                <Route exact path="/dashboard">
                     <NavHeader>
                         < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
