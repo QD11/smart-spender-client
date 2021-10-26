@@ -2,10 +2,9 @@ import Navbar from './components/Navbar'
 import styled from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState} from 'react'
-import { Route, Switch, NavLink} from 'react-router-dom'
+import { Route, Switch} from 'react-router-dom'
 
 import Defaultpage from './components/Defaultpage'
-import { IconContext } from 'react-icons/lib'
 import Expenses from './components/expense/Expenses'
 
 function App() {
@@ -16,9 +15,10 @@ function App() {
     return (
         <div>
             <Switch>
+
                 <Route exact path="/dashboard">
                     <NavHeader>
-                        < HamburgerMenu menuonClick={() => setShowNav(!showNav)}/>
+                        < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
                     <DivSplitter>
                         <Navbar show={showNav} />
