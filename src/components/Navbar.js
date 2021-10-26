@@ -1,21 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
+import { NavLink } from "react-router-dom"
 
 const Navbar = ({show}) => {
     return (
         <SideNav showBar={show}>
             <SideUL>
                 <SideLI>
-                    <SideA href='/dashboard'>Dashboard</SideA>
+                    <NavLink to='/dashboard' exact>
+                        <SideA href='/dashboard'>Dashboard</SideA>
+                    </NavLink>
                 </SideLI>
                 <SideLI>
-                    <SideA href='/expenses'>Expenses</SideA>
+                    <NavLink to='/expenses' exact>
+                        <SideA href='/expenses'>Expenses</SideA>
+                    </NavLink>
                 </SideLI>
                 <SideLI>
-                    <SideA href='/budget'>Budget</SideA>
+                    <NavLink to='/budget' exact>
+                        <SideA href='/budget'>Budget</SideA>
+                    </NavLink>
                 </SideLI>
                 <SideLI>
-                    <SideA href='/contact'>Contact Us</SideA>
+                    <NavLink to='/dashboard' exact>
+                        <SideA href='/contact'>Contact Us</SideA>
+                    </NavLink>
                 </SideLI>
             </SideUL>
         </SideNav>

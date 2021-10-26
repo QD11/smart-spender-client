@@ -1,17 +1,17 @@
 import React from 'react';
 
 function Expense ({spending}) {
-    const {id, description, amount, date , category_id} = spending
+    const {id, description, amount, date , category} = spending
     return(
         <div>
-           <li>
-                <>
-                    Descripton: {description} 
-                    Amount: {amount}
-                    date: {date}
-                    category: {category_id}
-                </>
-           </li>
+            <li>
+                    <>
+                        Descripton: {description} 
+                        Amount: {amount}
+                        date: {date}
+                        category: {category}
+                    </>
+            </li>
         </div>
     )
 }

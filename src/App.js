@@ -2,13 +2,16 @@ import Navbar from './components/Navbar'
 import styled from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState} from 'react'
-import { Route, Switch} from 'react-router-dom'
+import { Route, Switch, NavLink} from 'react-router-dom'
 
 import Defaultpage from './components/Defaultpage'
 import { IconContext } from 'react-icons/lib'
+import Expenses from './components/expense/Expenses'
 
 function App() {
     const [showNav, setShowNav] = useState(true)
+    const [user, setUser] = useState({})
+    
 
     return (
         <div>
@@ -33,7 +36,7 @@ function App() {
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
-                            <h5> Expenses </h5>
+                            <Expenses user={user}/>
                         </MainContent>
                     </DivSplitter>
                 </Route>
@@ -65,7 +68,7 @@ function App() {
                 </Route>
 
                 <Route exact path="/">
-                    <Defaultpage />
+                    <Defaultpage setUser={setUser}/>
                 </Route>
             </Switch>
         </div>

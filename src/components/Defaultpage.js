@@ -2,7 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import {useHistory} from "react-router-dom";
 
-const Defaultpage = () => {
+const Defaultpage = ({setUser}) => {
     const history = useHistory();
     const [formLogin, setFormLogin] = useState({
             email: '',
@@ -18,7 +18,6 @@ const Defaultpage = () => {
 
     const onSubmitHandler = (event) => {
         event.preventDefault()
-        console.log(formLogin)
         fetch('http://localhost:9292/login', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -26,8 +25,11 @@ const Defaultpage = () => {
         })
         .then(resp => resp.json())
         .then(data => {
-            if (data)
-                {history.push("/dashboard")}
+            console.log(data)
+            if (data){
+                setUser(data)
+                history.push("/dashboard")
+            }
             else
                 alert("Wrong Password")
             
