@@ -26,13 +26,13 @@ export default Navbar
 
 //Styled Components
 const SideNav = styled.div `
-    width: 240px;
+    width: 150px;
     background: #011627;
     position: absolute;
     height: 95vh;
-    padding: 0 30px;
+    padding-left: 10px;
     transition: all 1s;
-    left: ${props => props.showBar ? '-100%' : '0px'}
+    left: ${props => props.showBar ? '0px' : '-100%'}
 `
 
 const SideUL = styled.ul`

@@ -5,43 +5,63 @@ import { useState} from 'react'
 import { Route, Switch} from 'react-router-dom'
 
 import Defaultpage from './components/Defaultpage'
+import { IconContext } from 'react-icons/lib'
 
 function App() {
-    const [showNav, setShowNav] = useState(false)
+    const [showNav, setShowNav] = useState(true)
 
     return (
         <div>
             <Switch>
                 <Route exact path="/dashboard">
                     <NavHeader>
-                        < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
+                        < HamburgerMenu menuonClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
-                    <Navbar show={showNav} />
-                    {/* DashBoard Stuff */}
+                    <DivSplitter>
+                        <Navbar show={showNav} />
+                        <MainContent slideRight={showNav}>
+                            <h5> Dashboard </h5>
+                        </MainContent>
+                    </DivSplitter>
                 </Route>
 
                 <Route exact path="/expenses">
                     <NavHeader>
-                        < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
+                        < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
                     <Navbar show={showNav} />
-                    {/* Expenses Stuff */}
+                    <DivSplitter>
+                        <Navbar show={showNav} />
+                        <MainContent slideRight={showNav}>
+                            <h5> Expenses </h5>
+                        </MainContent>
+                    </DivSplitter>
                 </Route>
 
                 <Route exact path="/budget">
                     <NavHeader>
-                        < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
+                        < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
                     <Navbar show={showNav} />
-                    {/* Budget Stuff */}
+                    <DivSplitter>
+                        <Navbar show={showNav} />
+                        <MainContent slideRight={showNav}>
+                            <h5> Budget </h5>
+                        </MainContent>
+                    </DivSplitter>
                 </Route>
 
                 <Route exact path="/contact">
                     <NavHeader>
-                        < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
+                        < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
                     <Navbar show={showNav} />
-                    {/* Contact Stuff */}
+                    <DivSplitter>
+                        <Navbar show={showNav} />
+                        <MainContent slideRight={showNav}>
+                            <h5> Contact </h5>
+                        </MainContent>
+                    </DivSplitter>
                 </Route>
 
                 <Route exact path="/">
@@ -62,4 +82,19 @@ const NavHeader = styled.header`
     display: flex;
     height: 40px;
     font-size: 40px;
+`
+
+const DivSplitter = styled.div`
+    display: flex;
+`
+
+const MainContent = styled.div`
+    position: relative;
+    transition: all 1s;
+    padding-left: 10px;
+    left: ${props => props.slideRight ? '160px': '0px'};
+`
+
+const HamburgerMenu = styled(GiHamburgerMenu)`
+    cursor: pointer;
 `
