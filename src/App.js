@@ -17,7 +17,33 @@ function App() {
                         < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
                     <Navbar show={showNav} />
+                    {/* DashBoard Stuff */}
                 </Route>
+
+                <Route exact path="/expenses">
+                    <NavHeader>
+                        < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
+                    </NavHeader>
+                    <Navbar show={showNav} />
+                    {/* Expenses Stuff */}
+                </Route>
+
+                <Route exact path="/budget">
+                    <NavHeader>
+                        < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
+                    </NavHeader>
+                    <Navbar show={showNav} />
+                    {/* Budget Stuff */}
+                </Route>
+
+                <Route exact path="/contact">
+                    <NavHeader>
+                        < GiHamburgerMenu onClick={() => setShowNav(!showNav)}/>
+                    </NavHeader>
+                    <Navbar show={showNav} />
+                    {/* Contact Stuff */}
+                </Route>
+
                 <Route exact path="/">
                     <Defaultpage />
                 </Route>

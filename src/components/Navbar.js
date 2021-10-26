@@ -6,16 +6,16 @@ const Navbar = ({show}) => {
         <SideNav showBar={show}>
             <SideUL>
                 <SideLI>
-                    <SideA href='/'>Dashboard</SideA>
+                    <SideA href='/dashboard'>Dashboard</SideA>
                 </SideLI>
                 <SideLI>
-                    <SideA href='/'>Expenses</SideA>
+                    <SideA href='/expenses'>Expenses</SideA>
                 </SideLI>
                 <SideLI>
-                    <SideA href='/'>Budget</SideA>
+                    <SideA href='/budget'>Budget</SideA>
                 </SideLI>
                 <SideLI>
-                    <SideA href='/'>Contact Us</SideA>
+                    <SideA href='/contact'>Contact Us</SideA>
                 </SideLI>
             </SideUL>
         </SideNav>
