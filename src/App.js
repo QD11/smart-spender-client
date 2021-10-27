@@ -2,7 +2,7 @@ import Navbar from './components/Navbar'
 import styled from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState, useEffect} from 'react'
-import { Route, Switch, Redirect} from 'react-router-dom'
+import { Route, Switch} from 'react-router-dom'
 
 import Defaultpage from './components/Defaultpage'
 import Expenses from './components/expense/Expenses'
@@ -17,7 +17,7 @@ function App() {
     .then((data) => setCategories(data))}, [])
 
 
-    if (!user)  return <Redirect to ="/"/>
+
 
     return (
         <div>

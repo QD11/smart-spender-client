@@ -17,7 +17,7 @@ function EditExpense({ spending, onUpdateSpending}) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({amount: updatedAmount, date: updatedDate, description: updatedDescription, category_id: updatedCategory }),
+        body: JSON.stringify({amount: updatedAmount, date: updatedDate, description: updatedDescription, category_id: updatedCategory}),
     })
     .then((resp)=>resp.json())
     .then((updatedSpending) => onUpdateSpending(updatedSpending))
