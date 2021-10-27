@@ -1,14 +1,19 @@
 import React, {useState, useEffect} from 'react';
+import {Redirect} from 'react-router-dom'
 import ExpenseList from './ExpenseList';
 import NewExpense from './NewExpense'
 
 
-const Expenses = ({user, categories}) => {
+const Expenses = ({user, categories}) => {    
     const [spendings, setSpendings] = useState([]);
-
+    
+    
     useEffect(()=> {fetch(`http://localhost:9292/spending/${user.id}`)
     .then(resp => resp.json())
     .then((data)=> setSpendings(data))}, []);
+    
+    //Redirects to user to login page on refresh
+    if (!user)  {return <Redirect to ="/"/>}    
 
     const addNewExpense = (spending) =>
     {
@@ -36,7 +41,7 @@ const Expenses = ({user, categories}) => {
                 deleteSpending = {deleteSpending}
                 onUpdateSpending = {handleUpdateSpending}
             />
-            <NewExpense categories = {categories} addNewExpense = {addNewExpense} />
+            <NewExpense categories={categories} addNewExpense = {addNewExpense} />
         </div>   
     )
 }

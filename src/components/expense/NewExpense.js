@@ -4,14 +4,14 @@ function NewExpense({categories, addNewExpense}) {
     const [description, setDescription] = useState("");
     const [amount, setAmount] = useState(0);
     const [date, setDate] = useState("");
-    const [category, setCategory] = useState("")
+    const [newCategory, setNewCategory] = useState("")
 
     //Do we need user_id somewhere in here??    
     const newSpending = {
         description,
         amount,
         date,
-        category_id: category
+        category_id: newCategory
     };
 
     const configObj = {
@@ -45,6 +45,7 @@ function NewExpense({categories, addNewExpense}) {
                     placeholder = ""
                     name = "description"
                     value = {description}
+                    required = "required"
                     onChange={(e)=> setDescription(e.target.value)}
                 />
                 <label htmlFor = "amount"> Amount:</label>
@@ -54,6 +55,7 @@ function NewExpense({categories, addNewExpense}) {
                     placeholder = "$"
                     name = "amount"
                     value = {amount}
+                    required = "required"
                     onChange={(e)=> setAmount(e.target.value)}
                 />
                 <label htmlFor = "date"> Date: </label>
@@ -63,13 +65,14 @@ function NewExpense({categories, addNewExpense}) {
                     placeholder = ""
                     name = "date"
                     value = {date}
+                    required = "required"
                     onChange={(e)=> setDate(e.target.value)}
                 />
                 <label>
                     Category:
                     <select
                         placeholder="Select a Category"
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e) => setNewCategory(e.target.value)}
                     >
                         <option value="none">Select a Category</option>   
                         {categories.map((category) => (
