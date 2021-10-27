@@ -17,7 +17,7 @@ function App() {
     .then((data) => setCategories(data))}, [])
 
 
-    // if (!user) return <Redirect to ="/"/>
+    if (!user)  return <Redirect to ="/"/>
 
     return (
         <div>

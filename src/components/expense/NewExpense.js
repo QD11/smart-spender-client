@@ -30,8 +30,7 @@ function NewExpense({categories, addNewExpense}) {
         .then((resp) => resp.JSON())
         .then((expense) => {
             addNewExpense(expense)
-        });
-        
+        });  
     };
 
     return (

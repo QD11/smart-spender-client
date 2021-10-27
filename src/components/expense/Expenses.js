@@ -6,11 +6,12 @@ import NewExpense from './NewExpense'
 
 const Expenses = ({user, categories}) => {    
     const [spendings, setSpendings] = useState([]);
-    
+    console.log(user.id)
     
     useEffect(()=> {fetch(`http://localhost:9292/spending/${user.id}`)
     .then(resp => resp.json())
     .then((data)=> setSpendings(data))}, []);
+    console.log(spendings)
     
     //Redirects to user to login page on refresh
     if (!user)  {return <Redirect to ="/"/>}    

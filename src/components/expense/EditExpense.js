@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 function EditExpense({ spending, onUpdateSpending}) {
-  const { id, description, amount, date } = spending;
+  const { id, description, amount, date, category_id } = spending;
 
   const [updatedAmount, setUpdatedAmount] = useState(amount);
   const [updatedDate, setUpdatedDate] = useState(date);
   const [updatedDescription, setUpdatedDescription] = useState(description);
+  const [updatedCategory, setUpdatedCategory] = useState(category_id)
   
 
   function handleEditForm(e) {
@@ -16,9 +17,9 @@ function EditExpense({ spending, onUpdateSpending}) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({amount: updatedAmount, date: updatedDate, description: updatedDescription }),
+        body: JSON.stringify({amount: updatedAmount, date: updatedDate, description: updatedDescription, category_id: updatedCategory }),
     })
-    .then((resp)=>resp.JSON())
+    .then((resp)=>resp.json())
     .then((updatedSpending) => onUpdateSpending(updatedSpending))
   }
   return (
@@ -30,21 +31,28 @@ function EditExpense({ spending, onUpdateSpending}) {
             value={updatedDescription}
             onChange={(e) => setUpdatedDescription(e.target.value)}
         />
-             <input 
+          <input 
             id="amount"
             type="text"
             name="amount"
             value={updatedAmount}
             onChange={(e) => setUpdatedAmount(e.target.value)}
         />
-         <input 
+          <input 
             id="date"
             type="date"
             name="date"
             value={updatedDate}
             onChange={(e) => setUpdatedDate(e.target.value)}
         />
-        <input type="submit" value="Save"/>
+        <input 
+            id="Category"
+            type="text"
+            name="Category"
+            value={updatedCategory}
+            onChange={(e) => setUpdatedCategory(e.target.value)}
+        />
+          <input type="submit" value="Save"/>
     </form>
   );
 }
