@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar'
 import styled from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { useState} from 'react'
+import { useState, useEffect} from 'react'
 import { Route, Switch} from 'react-router-dom'
 
 import Defaultpage from './components/Defaultpage'
@@ -9,13 +9,19 @@ import Expenses from './components/expense/Expenses'
 
 function App() {
     const [showNav, setShowNav] = useState(true)
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(false)
+    const [categories, setCategories] = useState([]);
     
+    useEffect(()=> {fetch("http://localhost:9292/category")
+    .then(resp => resp.json())
+    .then((data) => setCategories(data))}, [])
+
+
+
 
     return (
         <div>
             <Switch>
-
                 <Route exact path="/dashboard">
                     <NavHeader>
                         < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
@@ -36,7 +42,7 @@ function App() {
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
-                            <Expenses user={user}/>
+                            <Expenses categories = {categories} user={user}/>
                         </MainContent>
                     </DivSplitter>
                 </Route>
