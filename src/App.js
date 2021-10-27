@@ -1,11 +1,12 @@
 import Navbar from './components/Navbar'
-import styled from 'styled-components'
+import styled, { keyframes}  from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState} from 'react'
 import { Route, Switch} from 'react-router-dom'
 
 import Defaultpage from './components/Defaultpage'
 import Expenses from './components/expense/Expenses'
+import BudgetMain from './components/budget/BudgetMain'
 
 function App() {
     const [showNav, setShowNav] = useState(true)
@@ -49,7 +50,7 @@ function App() {
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
-                            <h5> Budget </h5>
+                            <BudgetMain user={user}/>
                         </MainContent>
                     </DivSplitter>
                 </Route>
@@ -97,7 +98,15 @@ const MainContent = styled.div`
     padding-left: 10px;
     left: ${props => props.slideRight ? '160px': '0px'};
 `
+const bounce = keyframes`
+    0% {transform: scale(1);}
+    50% {transform: scale(1.5);}
+    100% {transform: scale(1);}
+`
 
 const HamburgerMenu = styled(GiHamburgerMenu)`
     cursor: pointer;
+    animation-name = ${bounce};
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
 `
