@@ -1,19 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import CategoryTable from './CategoryTable'
+import PieChart from './PieChart'
 
 const BudgetMain = ({user}) => {
-    // const [categories, setCategories] = useState([])
-
-    // useEffect(() => {
-    //     fetch('http://localhost:9292/category')
-    //     .then(resp => resp.json())
-    //     .then(data => setCategories(data))
-    // }, [])
-
+    const [percentages, setPercentages] = useState([])
+    
     return (
         <div>
             <h5>Available Monthly Budget: ${user.balance}</h5>
-            <CategoryTable user={user} />
+            <CategoryTable user={user} setPercentages={setPercentages}/>
+            {percentages? <PieChart percentages={percentages}/> : null}
         </div>
     )
 }

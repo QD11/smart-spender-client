@@ -1,18 +1,29 @@
 import React, {useState, useEffect} from 'react'
 import ActualTable from './ActualTable'
 
-const CategoryTable = ({user}) => {
+const CategoryTable = ({user, setPercentages}) => {
 
     const [budgetPlans, setBudgetPlans] = useState([])
 
     useEffect(() => {
         fetch(`http://localhost:9292/budgetplan/${user.id}`)
         .then(resp => resp.json())
-        .then(data => setBudgetPlans(data))
+        .then(data => {
+            setBudgetPlans(data)
+            setPercentages(
+                [...data].map(element => {
+                    return({
+                        category: element.category,
+                        plannedPercentage: element.plannedPercentage,
+                        actualPercentage: element.actualPercentage,
+                    })
+                })
+            )
+        })
     }, [])
 
     if (budgetPlans) {
-        console.log(budgetPlans)
+
         const data = [...budgetPlans].map(element => {
             return({
                 category: element.category,
