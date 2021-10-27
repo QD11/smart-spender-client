@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Popup from 'reactjs-popup'
 
-const EditButton = () => {
+const EditButton = ({balance, percentages, setPercentages}) => {
 
-    const onUpdateHandler = () => {
-        console.log('hi')
+    const onUpdateHandler = (event) => {
+        event.preventDefault()
+
     }
 
 
