@@ -35,6 +35,13 @@ const Defaultpage = ({setUser}) => {
         })
     }
 
+    function handleSignUp(){
+        history.push("/signup")
+
+
+    }
+
+
 
     return (
         <div>
@@ -49,6 +56,10 @@ const Defaultpage = ({setUser}) => {
                 </div>
                 <input type="submit"></input>
             </form>
+            <button onClick={handleSignUp}>
+                Sign Up Here 
+            </button>
+
         </div>
     )
 }

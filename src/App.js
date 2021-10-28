@@ -7,6 +7,7 @@ import { Route, Switch} from 'react-router-dom'
 import Defaultpage from './components/Defaultpage'
 import Expenses from './components/expense/Expenses'
 import BudgetMain from './components/budget/BudgetMain'
+import SignUp from './components/SignUp'
 
 function App() {
     const [showNav, setShowNav] = useState(true)
@@ -16,7 +17,6 @@ function App() {
     useEffect(()=> {fetch("http://localhost:9292/category")
     .then(resp => resp.json())
     .then((data) => setCategories(data))}, [])
-
 
 
 
@@ -72,6 +72,10 @@ function App() {
                             <h5> Contact </h5>
                         </MainContent>
                     </DivSplitter>
+                </Route>
+
+                <Route exact path="/signup">
+                    <SignUp setUser={setUser}/>
                 </Route>
 
                 <Route exact path="/">
