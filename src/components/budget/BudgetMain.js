@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import CategoryTable from './CategoryTable'
-import PieChart from './PieChart'
 import BarChart from './BarChart'
 import EditButton from './EditButton'
+import {Redirect} from 'react-router-dom'
 
 const BudgetMain = ({user}) => {
     const [percentages, setPercentages] = useState(null)
@@ -29,7 +29,7 @@ const BudgetMain = ({user}) => {
         .then(data => setTableBudgetPlans(data))
     }, [user])
 
-    console.log(percentages)
+    if (!user)  {return <Redirect to ="/"/>}
     
     return (
         <div>
