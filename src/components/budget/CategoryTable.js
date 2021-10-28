@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import ActualTable from './ActualTable'
 
 const CategoryTable = ({budgetPlans}) => {
+    const [data, setData] = useState(null)
 
-    const data = [...budgetPlans].map(element => {
+    useEffect(() =>{
+    const data2 = [...budgetPlans].map(element => {
         return({
             category: element.category,
             plannedPercentage: (element.plannedPercentage).toFixed(2)+'%',
@@ -12,6 +14,8 @@ const CategoryTable = ({budgetPlans}) => {
             actualPercentage: (element.actualPercentage).toFixed(2)+'%',
         })
     })
+    setData(data2)
+    }, [budgetPlans])
     
     const columns = [
         {
@@ -38,7 +42,7 @@ const CategoryTable = ({budgetPlans}) => {
 
     return (
         <div>
-            <ActualTable data={data} columns={columns}/>
+            {data? <ActualTable data={data} columns={columns}/>: null}
         </div>
     )
 

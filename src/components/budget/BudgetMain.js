@@ -5,8 +5,9 @@ import BarChart from './BarChart'
 import EditButton from './EditButton'
 
 const BudgetMain = ({user}) => {
-    const [percentages, setPercentages] = useState([])
-    const [budgetPlans, setBudgetPlans] = useState([])
+    const [percentages, setPercentages] = useState(null)
+    const [budgetPlans, setBudgetPlans] = useState(null)
+    const [tableBudgetPlans, setTableBudgetPlans] = useState(null)
 
     useEffect(() => {
         fetch(`http://localhost:9292/budgetplan/${user.id}`)
@@ -23,13 +24,18 @@ const BudgetMain = ({user}) => {
                 })
             )
         })
-    }, [])
+        fetch(`http://localhost:9292/budgetplan/table/${user.id}`)
+        .then(resp => resp.json())
+        .then(data => setTableBudgetPlans(data))
+    }, [user])
+
+    console.log(percentages)
     
     return (
         <div>
-            <h5>Available Monthly Budget: ${user.balance}</h5>
-            {percentages? <EditButton /> : null}
-            {budgetPlans? <CategoryTable user={user} budgetPlans={budgetPlans}/> : null}
+            {tableBudgetPlans? <h5>Available Monthly Budget: ${tableBudgetPlans.balance}</h5> : null}
+            {tableBudgetPlans && percentages? <EditButton percentages={percentages} setPercentages={setPercentages} budgetPlans={budgetPlans} tableBudgetPlans={tableBudgetPlans} setTableBudgetPlans={setTableBudgetPlans} setBudgetPlans={setBudgetPlans}/> : null}
+            {budgetPlans? <CategoryTable budgetPlans={budgetPlans}/> : null}
             {/* {percentages? <PieChart percentages={percentages}/> : null} */}
             {percentages? <BarChart percentages={percentages}/> : null}
         </div>
