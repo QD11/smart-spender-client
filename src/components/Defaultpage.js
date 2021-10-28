@@ -25,7 +25,6 @@ const Defaultpage = ({setUser}) => {
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
             if (data){
                 setUser(data)
                 history.push("/dashboard")
