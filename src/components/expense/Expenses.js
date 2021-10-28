@@ -12,7 +12,6 @@ const Expenses = ({user, categories}) => {
     .then(resp => resp.json())
     .then((data)=> setSpendings(data))}, []);
     console.log(spendings)
-    
     //Redirects to user to login page on refresh
     if (!user)  {return <Redirect to ="/"/>}    
 
@@ -42,7 +41,7 @@ const Expenses = ({user, categories}) => {
                 deleteSpending = {deleteSpending}
                 onUpdateSpending = {handleUpdateSpending}
             />
-            <NewExpense categories={categories} addNewExpense = {addNewExpense} />
+            <NewExpense user={user} categories={categories} addNewExpense = {addNewExpense} />
         </div>   
     )
 }

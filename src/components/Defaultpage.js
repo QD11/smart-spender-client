@@ -37,8 +37,6 @@ const Defaultpage = ({setUser}) => {
 
     function handleSignUp(){
         history.push("/signup")
-
-
     }
 
 
@@ -59,7 +57,6 @@ const Defaultpage = ({setUser}) => {
             <button onClick={handleSignUp}>
                 Sign Up Here 
             </button>
-
         </div>
     )
 }

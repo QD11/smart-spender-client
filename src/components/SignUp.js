@@ -9,6 +9,7 @@ function SignUp() {
         email:'',
         password:''
         })
+    const[errorMessage, setErrorMessage] = useState('');
 
     const onChangeHandler = (event) => {
         setFormSignup({
@@ -26,7 +27,7 @@ function SignUp() {
         .then(resp => resp.json())
         .then(data => {
             if (data){
-                history.push("/dashboard")
+               history.push("/dashboard")
             }
             else
                 alert("Email address exists")

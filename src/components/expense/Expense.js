@@ -4,6 +4,7 @@ import EditExpense from './EditExpense';
 function Expense ({spending, deleteSpending, onUpdateSpending}) {
     const {id, description, amount, date , category} = spending
     const[isEditing, setIsEditing] = useState(false);
+    
 
     const handleExpenseUpdate = (updatedExpense) => {
         setIsEditing(false);
@@ -18,23 +19,17 @@ function Expense ({spending, deleteSpending, onUpdateSpending}) {
     };
 
     const formatDate = (string) => {
-        let options = {year: "numeric", month: "long", day: "numeric"};
-        return new Date(string).toUTCString('en-US', options)
+        const year = string.slice(0,4)
+        const month = string.slice(5,7)
+        const day = string.slice(8,10)
+        return `${month}/${day}/${year}`
+        // let options = {year: "numeric", month: "long", day: "numeric"};
+        // return new Date(string).toUTCString('en-US', options)
     }
 
     return(
         <div>
             <table>
-                <thead>
-                    <tr>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Date</th>
-                    <th>Category</th>
-                    <th>Modify?</th>
-                    <th>Remove?</th>
-                    </tr>
-                </thead>
                 <tbody>
             {isEditing ?
                 (<EditExpense spending={spending}
@@ -49,18 +44,7 @@ function Expense ({spending, deleteSpending, onUpdateSpending}) {
                         Edit Spending </button></td>
                         <td><button onClick={handleDelete}>Delete</button></td>
                     </tr>)}
-                {/* //         <p>
-                //         Descripton: 
-                //         Amount: 
-                //         date: {formatDate(date)}
-                //         category: {category}
-                //         <button onClick={() =>setIsEditing((isEditing) => !isEditing)}>
-                //             Edit Spending
-                //         </button>
-                //         
-                //         </p>
-                //     </li>
-                // )} */}
+      
                 </tbody>
             </table>
         </div>
