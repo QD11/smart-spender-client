@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 
-function NewExpense({categories, addNewExpense}) {
+function NewExpense({categories, addNewExpense, user}) {
     const [description, setDescription] = useState("");
     const [amount, setAmount] = useState(0);
     const [date, setDate] = useState("");
     const [newCategory, setNewCategory] = useState("")
 
-    //Do we need user_id somewhere in here??    
+ 
     const newSpending = {
         description,
         amount,
@@ -24,10 +24,10 @@ function NewExpense({categories, addNewExpense}) {
     };
 
     const handleSubmit = (e) => {
-        e.PreventDefault();
+        e.preventDefault();
         
-        fetch("http://localhost:9292/spending/:user_id", configObj)
-        .then((resp) => resp.JSON())
+        fetch(`http://localhost:9292/spending/${user.id}`, configObj)
+        .then((resp) => resp.json())
         .then((expense) => {
             addNewExpense(expense)
         });  
@@ -54,6 +54,8 @@ function NewExpense({categories, addNewExpense}) {
                     placeholder = "$"
                     name = "amount"
                     value = {amount}
+                    min = "0.00"
+                    step = "any"
                     required = "required"
                     onChange={(e)=> setAmount(e.target.value)}
                 />
@@ -69,11 +71,11 @@ function NewExpense({categories, addNewExpense}) {
                 />
                 <label>
                     Category:
-                    <select
+                    <select 
                         placeholder="Select a Category"
                         onChange={(e) => setNewCategory(e.target.value)}
                     >
-                        <option value="none">Select a Category</option>   
+                        <option hidden>Select a Category</option>   
                         {categories.map((category) => (
                             <option key = {category.id} value={category.id}>
                                 {category.description}
@@ -81,7 +83,7 @@ function NewExpense({categories, addNewExpense}) {
                         ))}    
                     </select>
                 </label>
-                <button type="submit">Add Expense</button>
+                <button disabled= {newCategory && description && amount && date?false:true} type="submit">Add Expense</button>
             </form>
         </div>
     )
