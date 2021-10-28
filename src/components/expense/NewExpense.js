@@ -54,7 +54,8 @@ function NewExpense({categories, addNewExpense, user}) {
                     placeholder = "$"
                     name = "amount"
                     value = {amount}
-                    min = "0.01"
+                    min = "0.00"
+                    step = "any"
                     required = "required"
                     onChange={(e)=> setAmount(e.target.value)}
                 />

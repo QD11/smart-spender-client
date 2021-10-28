@@ -40,6 +40,7 @@ const Expenses = ({user, categories}) => {
             <ExpenseList spendings = {spendings}
                 deleteSpending = {deleteSpending}
                 onUpdateSpending = {handleUpdateSpending}
+                categories = {categories}
             />
             <NewExpense user={user} categories={categories} addNewExpense = {addNewExpense} />
         </div>   

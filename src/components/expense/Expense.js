@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import EditExpense from './EditExpense';
 
-function Expense ({spending, deleteSpending, onUpdateSpending}) {
+function Expense ({spending, deleteSpending, onUpdateSpending, categories}) {
     const {id, description, amount, date , category} = spending
     const[isEditing, setIsEditing] = useState(false);
     
@@ -29,26 +29,19 @@ function Expense ({spending, deleteSpending, onUpdateSpending}) {
 
     return(
         <div>
-            <table>
-                <tbody>
             {isEditing ?
-                (<EditExpense spending={spending}
+                (<EditExpense categories = {categories} spending={spending}
                 onUpdateSpending = {handleExpenseUpdate}
                 />):(    
-                    <tr>
-                        <td>{description} </td>
-                        <td>{amount} </td>
-                        <td>{formatDate(date)} </td>
-                        <td>{category} </td>
-                        <td> <button onClick={() =>setIsEditing((isEditing) => !isEditing)}>
-                        Edit Spending </button></td>
-                        <td><button onClick={handleDelete}>Delete</button></td>
-                    </tr>)}
-      
-                </tbody>
-            </table>
+                    <div> Description: {description} Amount: {amount} Date: {formatDate(date)} Category: {category}
+                        <button onClick={() =>setIsEditing((isEditing) => !isEditing)}>
+                        Edit Spending </button>
+                        <button onClick={handleDelete}>Delete</button>
+                  </div>
+                )}
         </div>
     
-    )}
+    )
+}
 
 export default Expense
