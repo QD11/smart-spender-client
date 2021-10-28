@@ -10,7 +10,7 @@ const BudgetMain = ({user}) => {
     return (
         <div>
             <h5>Available Monthly Budget: ${user.balance}</h5>
-            <EditButton balance={user.balance} percentages={percentages} setPercentages={setPercentages}/>
+            <EditButton />
             <CategoryTable user={user} setPercentages={setPercentages}/>
             {/* {percentages? <PieChart percentages={percentages}/> : null} */}
             {percentages? <BarChart percentages={percentages}/> : null}
