@@ -2,7 +2,7 @@ import React from 'react';
 import Expense from './Expense'
 
 
-function ExpenseList({spendings, deleteSpending, onUpdateSpending, categories}) {
+function ExpenseList({spendings, deleteSpending, onUpdateSpending}) {
     return(
         <div>
             <h3>Spending Items</h3>
@@ -12,7 +12,6 @@ function ExpenseList({spendings, deleteSpending, onUpdateSpending, categories}) 
                 spending = {spending}
                 deleteSpending = {deleteSpending}
                 onUpdateSpending = {onUpdateSpending}
-            
                 />))}
         </div>
     )

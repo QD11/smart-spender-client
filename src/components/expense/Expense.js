@@ -30,7 +30,7 @@ function Expense ({spending, deleteSpending, onUpdateSpending, categories}) {
     return(
         <div>
             {isEditing ?
-                (<EditExpense categories = {categories} spending={spending}
+                (<EditExpense spending={spending}
                 onUpdateSpending = {handleExpenseUpdate}
                 />):(    
                     <div> Description: {description} Amount: {amount} Date: {formatDate(date)} Category: {category}

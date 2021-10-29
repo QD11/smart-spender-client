@@ -33,6 +33,11 @@ function SignUp() {
                 alert("Email address exists")
         })
     }
+
+    const handleBack = () => {
+        history.push("/")
+    }
+
 return (
     <div>
         <form onSubmit={onSubmitHandler}>
@@ -50,6 +55,7 @@ return (
             </div>
             <input type="submit"></input>
         </form>
+       <button onClick={handleBack}>Back</button>
     </div>
 )}
 

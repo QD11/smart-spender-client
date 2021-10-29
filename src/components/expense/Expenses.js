@@ -11,7 +11,6 @@ const Expenses = ({user, categories}) => {
     useEffect(()=> {fetch(`http://localhost:9292/spending/${user.id}`)
     .then(resp => resp.json())
     .then((data)=> setSpendings(data))}, []);
-    console.log(spendings)
     //Redirects to user to login page on refresh
     if (!user)  {return <Redirect to ="/"/>}    
 
@@ -40,7 +39,6 @@ const Expenses = ({user, categories}) => {
             <ExpenseList spendings = {spendings}
                 deleteSpending = {deleteSpending}
                 onUpdateSpending = {handleUpdateSpending}
-                categories = {categories}
             />
             <NewExpense user={user} categories={categories} addNewExpense = {addNewExpense} />
         </div>   
