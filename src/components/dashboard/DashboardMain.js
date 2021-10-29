@@ -7,6 +7,7 @@ import Spending from './Spending'
 const DashboardMain = ({user}) => {
     const [sixMonthData, setSixMonthData] = useState(null)
     const [recentSpendings, setRecentSpendings] = useState([])
+    const [sumEachCategory, setSumEachCategory] = useState([])
 
     useEffect(()=> {
         fetch(`http://localhost:9292/spending/sixmonths/${user.id}`)
@@ -16,9 +17,15 @@ const DashboardMain = ({user}) => {
         fetch(`http://localhost:9292/spending/recent/${user.id}`)
         .then(resp => resp.json())
         .then((data => setRecentSpendings(data)))
+
+        fetch(`http://localhost:9292/spending/currentmonthcategories/${user.id}`)
+        .then(resp => resp.json())
+        .then((data => setSumEachCategory(data)))
+
     }, [user]);
 
     console.log(recentSpendings)
+    console.log(sumEachCategory)
 
     //Redirects to user to login page on refresh
     if (!user)  {return <Redirect to ="/"/>}
@@ -27,7 +34,7 @@ const DashboardMain = ({user}) => {
     return (
         <div>
             <LineChart sixMonthData={sixMonthData}/>
-            <PieChart sixMonthData={sixMonthData}/>
+            <PieChart sumEachCategory={sumEachCategory}/>
             {recentSpendings.map(spending => <Spending key={spending.description} spending={spending}/>)}
         </div>
     )}
