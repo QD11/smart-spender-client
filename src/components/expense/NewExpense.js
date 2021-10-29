@@ -1,17 +1,18 @@
 import React, {useState} from 'react'
+import styled from 'styled-components'
 
-function NewExpense({categories, addNewExpense, user}) {
+function NewExpense({categories, setSpendings, user}) {
     const [description, setDescription] = useState("");
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState(1);
     const [date, setDate] = useState("");
     const [newCategory, setNewCategory] = useState("")
-
- 
+    
     const newSpending = {
         description,
         amount,
         date,
-        category_id: newCategory
+        category_id: newCategory,
+        user_id: user.id
     };
 
     const configObj = {
@@ -28,13 +29,11 @@ function NewExpense({categories, addNewExpense, user}) {
         
         fetch(`http://localhost:9292/spending/${user.id}`, configObj)
         .then((resp) => resp.json())
-        .then((expense) => {
-            addNewExpense(expense)
-        });  
+        .then((expenses) => setSpendings(expenses));  
     };
 
     return (
-        <div>
+        <AddExpense>
             <h3> Create a new Expense </h3>
             <form onSubmit = {handleSubmit}>
                 <label htmlFor = "description"> Description:</label>
@@ -54,7 +53,7 @@ function NewExpense({categories, addNewExpense, user}) {
                     placeholder = "$"
                     name = "amount"
                     value = {amount}
-                    min = "0.00"
+                    min = "0.01"
                     step = "any"
                     required = "required"
                     onChange={(e)=> setAmount(e.target.value)}
@@ -85,8 +84,12 @@ function NewExpense({categories, addNewExpense, user}) {
                 </label>
                 <button disabled= {newCategory && description && amount && date?false:true} type="submit">Add Expense</button>
             </form>
-        </div>
+        </AddExpense>
     )
 }
+
+const AddExpense = styled.div`
+    margin-bottom: 25px;
+`
 
 export default NewExpense;

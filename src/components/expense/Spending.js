@@ -1,19 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import EditExpense from './EditExpense';
+import styled from 'styled-components'
 
-function Expense ({spending, deleteSpending, onUpdateSpending, categories}) {
-    const {id, description, amount, date , category} = spending
+const Spending = ({spending, deleteSpending, categories, handleUpdateSpending}) => {
     const[isEditing, setIsEditing] = useState(false);
-    
 
     const handleExpenseUpdate = (updatedExpense) => {
         setIsEditing(false);
-        onUpdateSpending(updatedExpense);
+        handleUpdateSpending(updatedExpense);
     }
 
     const handleDelete = () => {
-        deleteSpending(id);
-        fetch(`http://localhost:9292/spending/${id}`, {
+        deleteSpending(spending.id);
+        fetch(`http://localhost:9292/spending/${spending.id}`, {
             method: "DELETE",
         });
     };
@@ -23,25 +22,27 @@ function Expense ({spending, deleteSpending, onUpdateSpending, categories}) {
         const month = string.slice(5,7)
         const day = string.slice(8,10)
         return `${month}/${day}/${year}`
-        // let options = {year: "numeric", month: "long", day: "numeric"};
-        // return new Date(string).toUTCString('en-US', options)
     }
 
-    return(
-        <div>
+    return (
+        <DivCard>
             {isEditing ?
                 (<EditExpense categories = {categories} spending={spending}
-                onUpdateSpending = {handleExpenseUpdate}
-                />):(    
-                    <div> Description: {description} Amount: {amount} Date: {formatDate(date)} Category: {category}
+                handleExpenseUpdate = {handleExpenseUpdate} setIsEditing={setIsEditing} categories={categories}/>)
+                :
+                (    
+                    <div> Description: {spending.description} Amount: ${spending.amount} Date: {formatDate(spending.date)} Category: {spending.category}
                         <button onClick={() =>setIsEditing((isEditing) => !isEditing)}>
                         Edit Spending </button>
                         <button onClick={handleDelete}>Delete</button>
-                  </div>
+                    </div>
                 )}
-        </div>
-    
+        </DivCard>
     )
 }
 
-export default Expense
+const DivCard = styled.div`
+    display: flex,
+`
+
+export default Spending

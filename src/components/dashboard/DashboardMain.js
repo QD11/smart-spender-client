@@ -24,9 +24,7 @@ const DashboardMain = ({user}) => {
 
     }, [user]);
 
-    console.log(recentSpendings)
-    console.log(sumEachCategory)
-
+    
     //Redirects to user to login page on refresh
     if (!user)  {return <Redirect to ="/"/>}
 

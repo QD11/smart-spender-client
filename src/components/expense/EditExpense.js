@@ -1,58 +1,145 @@
 import React, { useState } from "react";
 
-function EditExpense({ spending, onUpdateSpending}) {
-  const { id, description, amount, date, category_id } = spending;
+function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories}) {
+  console.log(typeof handleExpenseUpdate)
+  const convertCategoryToCategoryID = (category) => {
+    switch (category){
+      case 'Housing':
+        return 1
+      case 'Transportation':
+        return 2
+      case 'Food':
+        return 3
+      case 'Utility':
+        return 4
+      case 'Insurance':
+        return 5
+      case 'Emergency':
+        return 6
+      case 'Discretionary':
+        return 7
+      case 'Other':
+        return 8
+      default:
+        console.log("NOPE")
+    }
+  }
 
-  const [updatedAmount, setUpdatedAmount] = useState(amount);
-  const [updatedDate, setUpdatedDate] = useState(date);
-  const [updatedDescription, setUpdatedDescription] = useState(description);
-  const [updatedCategory, setUpdatedCategory] = useState(category_id)
+  const convertCategoryIDToCategory = (category) => {
+    switch (category){
+      case 1:
+        return 'Housing'
+      case 2:
+        return 'Transportation'
+      case 3:  
+        return 'Food'
+      case 4: 
+        return 'Utility'
+      case 5: 
+        return 'Insurance'
+      case 6: 
+        return 'Emergency'
+      case 7: 
+        return 'Discretionary'
+      case 9: 
+        return 'Other'
+      default:
+        console.log("NOPE")
+    }
+  }
+
+
+  const [formData, setFormData] = useState({
+    description: spending.description,
+    amount: spending.amount,
+    date: spending.date,
+    category_id: 0
+  })
+
+  console.log(formData)
+
+  const handleChange = (event) => {
+    if (event.target.name === "category_id") {
+      setFormData(formData => {
+        return({
+          ...formData,
+          [event.target.name] : parseInt(event.target.value)
+        })
+      })
+    }
+    else {
+    setFormData(formData => {
+      return({
+        ...formData,
+        [event.target.name] : event.target.value
+      })
+    })}
+  }
+
   
 
   function handleEditForm(e) {
     e.preventDefault();
 
-    fetch(`http://localhost:9292/spending/${spending.id}`, {
+    fetch(`http://localhost:9292/spending/${spending.id}/edit`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({amount: updatedAmount, date: updatedDate, description: updatedDescription, category_id: updatedCategory}),
+        body: JSON.stringify(formData),
     })
     .then((resp)=>resp.json())
-    .then((updatedSpending) => onUpdateSpending(updatedSpending))
+    .then((updatedSpending) => console.log(updatedSpending))
   }
+
+
   return (
     <form onSubmit={handleEditForm}>
-         <input 
+        <label>
+          Description: 
+        </label>
+          <input 
             id="description"
             type="text"
             name="description"
-            value={updatedDescription}
-            onChange={(e) => setUpdatedDescription(e.target.value)}
+            value={formData.description}
+            onChange={handleChange}
         />
+        <label>
+          Amount: $ 
+        </label>
           <input 
             id="amount"
-            type="text"
+            type="number"
+            min="0.01"
             name="amount"
-            value={updatedAmount}
-            onChange={(e) => setUpdatedAmount(e.target.value)}
+            value={formData.amount}
+            onChange={handleChange}
         />
+        <label>
+          Date: 
+        </label>
           <input 
             id="date"
             type="date"
             name="date"
-            value={updatedDate}
-            onChange={(e) => setUpdatedDate(e.target.value)}
+            value={formData.date}
+            onChange={handleChange}
         />
-        <input 
-            id="Category"
-            type="text"
-            name="Category"
-            value={updatedCategory}
-            onChange={(e) => setUpdatedCategory(e.target.value)}
-        />
-          <input type="submit" value="Save"/>
+          <select 
+            placeholder="Select a Category"
+            name="category_id"
+            onChange={handleChange}
+          >
+            <option hidden value={0} >Select a Category</option>   
+            {categories.map((category) => (
+                <option key = {category.id} value={category.id}>
+                    {category.description}
+                </option>    
+            ))}    
+          </select>
+          <input disabled={formData.description && formData.amount && formData.date && formData.category_id !== 0 ? false:true} type="submit" value="Save"/>
+          <input type="button" value="Cancel" onClick={() => setIsEditing(isEditing => !isEditing)}/>
     </form>
   );
 }
