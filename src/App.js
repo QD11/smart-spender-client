@@ -3,7 +3,6 @@ import styled, { keyframes}  from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState, useEffect} from 'react'
 import { Route, Switch, Redirect} from 'react-router-dom'
-
 import Defaultpage from './components/Defaultpage'
 import Expenses from './components/expense/Expenses'
 import BudgetMain from './components/budget/BudgetMain'
@@ -13,12 +12,12 @@ import SignUp from './components/SignUp'
 function App() {
     const [showNav, setShowNav] = useState(true)
     const [user, setUser] = useState(false)
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState([])
+    const [spendings, setSpendings] = useState([])
     
     useEffect(()=> {fetch("http://localhost:9292/category")
     .then(resp => resp.json())
     .then((data) => setCategories(data))}, [])
-
 
 
     return (
@@ -31,7 +30,7 @@ function App() {
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
-                            <DashboardMain user={user}/>
+                            <DashboardMain user={user} spendings={spendings} />
                         </MainContent>
                     </DivSplitter>
                 </Route>
@@ -44,7 +43,7 @@ function App() {
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
-                            <Expenses categories = {categories} user={user}/>
+                            <Expenses spendings={spendings} setSpendings={setSpendings} categories = {categories} user={user}/>
                         </MainContent>
                     </DivSplitter>
                 </Route>
@@ -62,7 +61,7 @@ function App() {
                     </DivSplitter>
                 </Route>
 
-                <Route exact path="/contact">
+                {/* <Route exact path="/contact">
                     <NavHeader>
                         < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
@@ -73,7 +72,7 @@ function App() {
                             <h5> Contact </h5>
                         </MainContent>
                     </DivSplitter>
-                </Route>
+                </Route> */}
 
                 <Route exact path="/signup">
                     <SignUp setUser={setUser}/>
@@ -93,7 +92,7 @@ export default App;
 const NavHeader = styled.header`
     color: #eaecef;
     padding: 15px 30px;
-    background: #011627;
+    background: #16354d;
     display: flex;
     height: 40px;
     font-size: 40px;

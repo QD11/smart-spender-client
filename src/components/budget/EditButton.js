@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Popup from 'reactjs-popup'
+import {FiEdit} from 'react-icons/fi'
 
 const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudgetPlans, budgetPlans, setBudgetPlans}) => {
     const [formData, setFormData] = useState({
@@ -78,7 +79,7 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
             <Popup 
                 modal 
                 nested 
-                trigger={<button type="button" >Edit</button>}
+                trigger={<EditBut/>}
             >
             {close => (
                 <Modal>
@@ -87,44 +88,44 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
                             <FlexDiv>
                                 <div>
                                     <label>Available Monthly Budget ($)</label>
-                                    <input type="number" step=".01" min="0" required="required" name='balance' value={formData.balance} onChange={onChangeHandler}></input>
+                                    <StyledInput type="number" step=".01" min="0" required="required" name='balance' value={formData.balance} onChange={onChangeHandler}></StyledInput>
                                 </div>
                             </FlexDiv>
                             <FlexDiv>
                                 <LabelDiv>
                                     <div>
                                         <label>Housing (%)</label>
-                                        <input type="number" step=".01" min="0" max="100" required="required" name='housing_percentage' value={formData.housing_percentage} onChange={onChangeHandler}></input>
+                                        <StyledInput type="number" step=".01" min="0" max="100" required="required" name='housing_percentage' value={formData.housing_percentage} onChange={onChangeHandler}></StyledInput>
                                     </div>
                                     <div>
                                         <label>Food (%)</label>
-                                        <input type="number" step=".01" min="0" max="100" required="required" name='food_percentage' value={formData.food_percentage} onChange={onChangeHandler}></input>
+                                        <StyledInput type="number" step=".01" min="0" max="100" required="required" name='food_percentage' value={formData.food_percentage} onChange={onChangeHandler}></StyledInput>
                                     </div>
                                     <div>
                                         <label>Insurance (%)</label>
-                                        <input type="number" step=".01" min="0" max="100" required="required" name='insurance_percentage' value={formData.insurance_percentage} onChange={onChangeHandler}></input>
+                                        <StyledInput type="number" step=".01" min="0" max="100" required="required" name='insurance_percentage' value={formData.insurance_percentage} onChange={onChangeHandler}></StyledInput>
                                     </div>
                                     <div>
                                         <label>Discretionary (%)</label>
-                                        <input type="number" step=".01" min="0" max="100" required="required" name='discretionary_percentage' value={formData.discretionary_percentage} onChange={onChangeHandler}></input>
+                                        <StyledInput type="number" step=".01" min="0" max="100" required="required" name='discretionary_percentage' value={formData.discretionary_percentage} onChange={onChangeHandler}></StyledInput>
                                     </div>
                                 </LabelDiv>
                                 <LabelDiv>
                                     <div>
                                         <label>Transportation (%)</label>
-                                        <input type="number" step=".01" min="0" max="100" required="required" name='transport_percentage' value={formData.transport_percentage} onChange={onChangeHandler}></input>
+                                        <StyledInput type="number" step=".01" min="0" max="100" required="required" name='transport_percentage' value={formData.transport_percentage} onChange={onChangeHandler}></StyledInput>
                                     </div>
                                     <div>
                                         <label>Utility (%)</label>
-                                        <input type="number" step=".01" min="0" max="100" required="required" name='utility_percentage' value={formData.utility_percentage} onChange={onChangeHandler}></input>
+                                        <StyledInput type="number" step=".01" min="0" max="100" required="required" name='utility_percentage' value={formData.utility_percentage} onChange={onChangeHandler}></StyledInput>
                                     </div>
                                     <div>
                                         <label>Emergency (%)</label>
-                                        <input type="number" step=".01" min="0" max="100" required="required" name='emergency_percentage' value={formData.emergency_percentage} onChange={onChangeHandler}></input>
+                                        <StyledInput type="number" step=".01" min="0" max="100" required="required" name='emergency_percentage' value={formData.emergency_percentage} onChange={onChangeHandler}></StyledInput>
                                     </div>
                                     <div>
                                         <label>Other (%)</label>
-                                        <input type="number" step=".01" min="0" max="100" required="required" name='other_percentage' value={formData.other_percentage} onChange={onChangeHandler}></input>
+                                        <StyledInput type="number" step=".01" min="0" max="100" required="required" name='other_percentage' value={formData.other_percentage} onChange={onChangeHandler}></StyledInput>
                                     </div>
                                 </LabelDiv>
                             </FlexDiv>
@@ -142,6 +143,29 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
 
 export default EditButton
 
+const EditBut = styled(FiEdit)`
+    font-size: 35px;
+    box-shadow: 1px 1px 5px 3px rgb(132 133 132 / 40%);
+    border-radius: 10px;
+    border: 0px solid black;
+    padding: 7px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 20px;
+    background-color: white;
+    cursor: pointer;
+    // transition: all 0.5s;
+    // & :hover {
+    //     transform: scale(1.5)
+    // }
+`
+
+const StyledInput = styled.input`
+    font-size: 1em;
+`
+
 const FlexDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
@@ -156,17 +180,18 @@ const LabelDiv = styled.div`
 const Modal = styled.div`
     font-size: 25px;
     width: 50vw;
-    background-color: #e5e5e5;
-    border: 2px solid black;
-    border-radius: 25px;
+    background-color: white;
+    // border: 2px solid black;
+    border-radius: 10px;
     size: b5;
     text-align: center;
     padding: 20px;
+    box-shadow: 1px 1px 5px 3px rgb(132 133 132 / 40%);
 `
 
 const ActionsButton = styled.button`
     padding: 15px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 15px;
     border: 1px solid black;
     cursor: pointer;

@@ -26,8 +26,9 @@ function SignUp() {
         })
         .then(resp => resp.json())
         .then(data => {
+            console.log(data)
             if (data){
-               history.push("/dashboard")
+                history.push("/dashboard")
             }
             else
                 alert("Email address exists")

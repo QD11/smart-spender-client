@@ -3,6 +3,16 @@ import { Line } from 'react-chartjs-2';
 
 const LineChart = ({sixMonthData}) => {
 
+    const dateObj = new Date()
+    const monthName = dateObj.toLocaleString("default", { month: "short" })  
+    const yearName = new Date().getFullYear();
+
+    // const fiveMonthsAgo = new Date()
+    const d = new Date()
+    d.setMonth(d.getMonth() - 5)
+    const pastFiveMonth = d.toLocaleString("default", { month: "short" }) 
+    const pastYearToFiveMonth = d.getFullYear()
+
     const data = {
         labels: sixMonthData.map(element => {
             switch (element.month) {
@@ -45,6 +55,17 @@ const LineChart = ({sixMonthData}) => {
     };
 
     const options = {
+        maintainAspectRatio: true,
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: `${pastFiveMonth}, ${pastYearToFiveMonth} - ${monthName}, ${yearName} `,
+                font: {
+                    size: 25
+                }
+            }
+        },
         scales: {
         yAxes: {
             // beginAtZero: true,

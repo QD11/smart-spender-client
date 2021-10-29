@@ -1,33 +1,58 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
+import {MdLogout, MdSpaceDashboard} from 'react-icons/md'
+import {BsPiggyBankFill} from 'react-icons/bs'
+import {FaMoneyBill} from 'react-icons/fa'
 
 const linkStyle = {
     textDecoration: "none"
 }
 
-const Navbar = ({show}) => {
+const Navbar = ({show, toggle, setToggle}) => {
+
+    // const [toggle, setToggle] = useState() 
+
+    // console.log(toggle)
+    // const onClickHandler = (num) => {
+    //     setToggle(num)
+    // }
+
     return (
         <SideNav showBar={show}>
             <SideUL>
                 <SideLI>
                     <NavLink to='/dashboard' exact style={linkStyle}>
-                        <SideA>Dashboard</SideA>
+                        
+                        <SideA >
+                            <DashIcon />
+                            Dashboard
+                        </SideA> 
+
                     </NavLink>
                 </SideLI>
                 <SideLI>
                     <NavLink to='/expenses' exact style={linkStyle}>
-                        <SideA>Expenses</SideA>
+                        <SideA >
+                            <MoneyIcon/>
+                            Expenses
+                        </SideA>
                     </NavLink>
                 </SideLI>
                 <SideLI>
                     <NavLink to='/budget' exact style={linkStyle}>
-                        <SideA>Budget</SideA>
+                        <SideA >
+                            <PigIcon/>
+                            Budget
+                        </SideA>
                     </NavLink>
                 </SideLI>
                 <SideLI>
-                    <NavLink to='/dashboard' exact style={linkStyle}>
-                        <SideA>Contact Us</SideA>
+                    <NavLink to='/' exact style={linkStyle}>
+                        <LogOut>
+                            <Door />
+                        </LogOut>
+
                     </NavLink>
                 </SideLI>
             </SideUL>
@@ -39,8 +64,9 @@ export default Navbar
 
 //Styled Components
 const SideNav = styled.div `
-    width: 125px;
-    background: #011627;
+    width: 160px;
+    // background: #16354d;
+    background: #16354d;
     position: absolute;
     height: 95vh;
     padding-left: 10px;
@@ -59,13 +85,56 @@ const SideLI = styled.li`
 
 const SideA = styled.span`
     color: #eaecef;
-    font-size: 16px;
     text-decoration: none;
     display: block;
-    padding: 10px 15px;
+    padding: 10px 10px;
     border-radius: 6px;
     margin: 10px;
     &:hover, :active {
         background: #172b4d
     }
+`
+
+const SideB = styled.span`
+    color: #eaecef;
+    text-decoration: none;
+    display: block;
+    padding: 10px 10px;
+    border-radius: 6px;
+    margin: 10px;
+    background: white;
+`
+
+const LogOut = styled.span`
+    color: #eaecef;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-top: 450px;
+    margin-left: 10px;
+    &:hover, :active {
+        background: #172b4d
+    }
+`
+
+const Door = styled(MdLogout)`
+    font-size: 50px;
+
+`
+const DashIcon = styled(MdSpaceDashboard)`
+    margin-right: 5px;
+    margin-bottom: -2px;
+    font-size: 20px;
+`
+const PigIcon = styled(BsPiggyBankFill)`
+    margin-right: 5px;
+    margin-bottom: -2px;
+    font-size: 20px;
+`
+
+const MoneyIcon = styled(FaMoneyBill)`
+    margin-right: 5px;
+    margin-bottom: -2px;
+    font-size: 20px;
 `
