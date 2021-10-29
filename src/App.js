@@ -3,7 +3,6 @@ import styled, { keyframes}  from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState, useEffect} from 'react'
 import { Route, Switch, Redirect} from 'react-router-dom'
-
 import Defaultpage from './components/Defaultpage'
 import Expenses from './components/expense/Expenses'
 import BudgetMain from './components/budget/BudgetMain'
@@ -13,13 +12,12 @@ import SignUp from './components/SignUp'
 function App() {
     const [showNav, setShowNav] = useState(true)
     const [user, setUser] = useState(false)
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState([])
+    const [spendings, setSpendings] = useState([])
     
     useEffect(()=> {fetch("http://localhost:9292/category")
     .then(resp => resp.json())
     .then((data) => setCategories(data))}, [])
-
-
 
     return (
         <div>
@@ -31,7 +29,7 @@ function App() {
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
-                            <DashboardMain user={user}/>
+                            <DashboardMain user={user} spendings={spendings} />
                         </MainContent>
                     </DivSplitter>
                 </Route>
@@ -44,7 +42,7 @@ function App() {
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
-                            <Expenses categories = {categories} user={user}/>
+                            <Expenses spendings={spendings} setSpendings={setSpendings} categories = {categories} user={user}/>
                         </MainContent>
                     </DivSplitter>
                 </Route>

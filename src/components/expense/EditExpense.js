@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from 'styled-components'
 
 function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories}) {
   console.log(typeof handleExpenseUpdate)
@@ -56,7 +57,6 @@ function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories})
     category_id: 0
   })
 
-  console.log(formData)
 
   const handleChange = (event) => {
     if (event.target.name === "category_id") {
@@ -94,21 +94,18 @@ function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories})
 
 
   return (
-    <form onSubmit={handleEditForm}>
-        <label>
-          Description: 
-        </label>
-          <input 
+    <StyledForm onSubmit={handleEditForm}>
+
+          <StyledDes
             id="description"
             type="text"
             name="description"
             value={formData.description}
             onChange={handleChange}
         />
-        <label>
-          Amount: $ 
-        </label>
-          <input 
+
+
+          <StyledAmo 
             id="amount"
             type="number"
             min="0.01"
@@ -116,17 +113,16 @@ function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories})
             value={formData.amount}
             onChange={handleChange}
         />
-        <label>
-          Date: 
-        </label>
-          <input 
+
+          <StyledDat 
             id="date"
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
         />
-          <select 
+
+          <StyledSelect 
             placeholder="Select a Category"
             name="category_id"
             onChange={handleChange}
@@ -137,11 +133,68 @@ function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories})
                     {category.description}
                 </option>    
             ))}    
-          </select>
-          <input disabled={formData.description && formData.amount && formData.date && formData.category_id !== 0 ? false:true} type="submit" value="Save"/>
-          <input type="button" value="Cancel" onClick={() => setIsEditing(isEditing => !isEditing)}/>
-    </form>
+          </StyledSelect>
+          <StyledSave>
+            <input disabled={formData.description && formData.amount && formData.date && formData.category_id !== 0 ? false:true} type="submit" value="Save"/>
+          </StyledSave>
+          <StyledCan>
+            <input type="button" value="Cancel" onClick={() => setIsEditing(isEditing => !isEditing)}/>
+          </StyledCan>
+    </StyledForm>
   );
 }
+
+const StyledForm = styled.form`
+    height: 70px;
+    display: flex;
+    align-items: center;
+`
+
+const StyledDes = styled.input`
+  font-size: 1em;
+  font-weight: 700;
+  background-color: #ebeff2;
+  width: 211px;
+  margin-left: 63px;
+`
+
+const StyledAmo = styled.input`
+  // margin: 0 px3em;
+  font-size: 1em;
+  font-weight: 700;
+  background-color: #ebeff2;
+  width: 211px;
+  margin-left: 95px;
+`
+const StyledDat = styled.input`
+  // margin: 0 px3em;
+  font-size: 1em;
+  font-weight: 700;
+  background-color: #ebeff2;
+  width: 157px;
+  margin-left: 95px;
+`
+
+const StyledSelect = styled.select`
+  font-size: 1em;
+  font-weight: 700;
+  background-color: #ebeff2;
+  width: 160px;
+  margin-left: 95px;
+`
+
+const StyledSave = styled.span`
+  font-size: 1em;
+  font-weight: 700;
+  width: 50px;
+  margin-left: 100px;
+`
+
+const StyledCan = styled.span`
+  font-size: 1em;
+  font-weight: 700;
+  width: 50px;
+  margin-left: 20px;
+`
 
 export default EditExpense;

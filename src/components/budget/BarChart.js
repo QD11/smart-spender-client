@@ -27,6 +27,7 @@ const BarChart = ({percentages}) => {
     };
 
     const options = {
+        masintainAspectRatio: true,
         indexAxis: 'y',
         // Elements options apply to all of the options unless overridden in a dataset
         // In this case, we are setting the border of each horizontal bar to be 2px wide
@@ -49,7 +50,8 @@ const BarChart = ({percentages}) => {
 
     return (
         <div>
-            <Bar data={data} options={options} />
+            <Bar data={data} height={410}
+                width={826} options={options} />
         </div>
     )
 }
