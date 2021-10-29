@@ -69,14 +69,28 @@ const ContentDiv = styled.div`
 `
 
 const BarDiv = styled.div`
-    height: 300px;
-    width: 52%;
-    margin-left: 20px;
-    border-radius: 10px;
-    margin-top: 93px;
-    // box-shadow: 1px 1px 5px 3px rgb(132 133 132 / 40%);
-    // background-color: white;
+height: 479
+px
+;
+    width: 54%;
+    margin-left: 20
+px
+;
+    border-radius: 10
+px
+;
+    margin-top: 93
+px
+;
+    box-shadow: 1px 1px 5px 3px rgb(132 133 132 / 40%);
+    background-color: white;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 `
 

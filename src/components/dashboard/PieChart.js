@@ -1,14 +1,17 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
-import { chartColors } from "./colors";
 
 const PieChart = ({sumEachCategory}) => {
 
+    const dateObj = new Date()
+    const monthName = dateObj.toLocaleString("default", { month: "long" })  
+    const yearName = new Date().getFullYear();
+
     const data = {
-        labels: ['Housing', 'Transportation', 'Food', 'Utility', 'Insurance', 'Emergency', 'Discritionary','Other'],
+        labels: ['Housing', 'Transportation', 'Food', 'Utility', 'Insurance', 'Emergency', 'Discretionary','Other'],
         datasets: [
         {
-            label: '# of Votes',
+            label: '$',
             data: sumEachCategory,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -30,15 +33,28 @@ const PieChart = ({sumEachCategory}) => {
                 'rgba(121, 85, 72, 1)',
                 'rgba(158, 158, 158, 1',
             ],
-            borderWidth: 1,
         },
         ],
     };
 
+    const options = {
+        maintainAspectRatio: true,
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: `${monthName} ${yearName} - Spending`,
+                font: {
+                    size: 25
+                }
+            }
+        }
+        }
+
     return (
-        <div >
-            <Doughnut data={data} />
-        </div>
+        < >
+            <Doughnut data={data}  options={options} />
+        </>
     );
 }
 

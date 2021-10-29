@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
 import {MdLogout, MdSpaceDashboard} from 'react-icons/md'
@@ -9,21 +9,31 @@ const linkStyle = {
     textDecoration: "none"
 }
 
-const Navbar = ({show}) => {
+const Navbar = ({show, toggle, setToggle}) => {
+
+    // const [toggle, setToggle] = useState() 
+
+    // console.log(toggle)
+    // const onClickHandler = (num) => {
+    //     setToggle(num)
+    // }
+
     return (
         <SideNav showBar={show}>
             <SideUL>
                 <SideLI>
                     <NavLink to='/dashboard' exact style={linkStyle}>
-                        <SideA>
+                        
+                        <SideA >
                             <DashIcon />
                             Dashboard
-                        </SideA>
+                        </SideA> 
+
                     </NavLink>
                 </SideLI>
                 <SideLI>
                     <NavLink to='/expenses' exact style={linkStyle}>
-                        <SideA>
+                        <SideA >
                             <MoneyIcon/>
                             Expenses
                         </SideA>
@@ -31,7 +41,7 @@ const Navbar = ({show}) => {
                 </SideLI>
                 <SideLI>
                     <NavLink to='/budget' exact style={linkStyle}>
-                        <SideA>
+                        <SideA >
                             <PigIcon/>
                             Budget
                         </SideA>
@@ -82,6 +92,16 @@ const SideA = styled.span`
     &:hover, :active {
         background: #172b4d
     }
+`
+
+const SideB = styled.span`
+    color: #eaecef;
+    text-decoration: none;
+    display: block;
+    padding: 10px 10px;
+    border-radius: 6px;
+    margin: 10px;
+    background: white;
 `
 
 const LogOut = styled.span`

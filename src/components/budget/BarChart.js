@@ -27,7 +27,8 @@ const BarChart = ({percentages}) => {
     };
 
     const options = {
-        masintainAspectRatio: true,
+        maintainAspectRatio: true,
+        responsive: true,
         indexAxis: 'y',
         // Elements options apply to all of the options unless overridden in a dataset
         // In this case, we are setting the border of each horizontal bar to be 2px wide
@@ -36,7 +37,6 @@ const BarChart = ({percentages}) => {
             borderWidth: 2,
         },
         },
-        responsive: true,
         plugins: {
         legend: {
             position: 'right',
@@ -49,10 +49,10 @@ const BarChart = ({percentages}) => {
     };
 
     return (
-        <div>
+        <>
             <Bar data={data} height={410}
                 width={826} options={options} />
-        </div>
+        </>
     )
 }
 

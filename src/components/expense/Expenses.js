@@ -9,7 +9,7 @@ const Expenses = ({user, categories, spendings, setSpendings}) => {
     
     useEffect(()=> {fetch(`http://localhost:9292/spending/${user.id}`)
     .then(resp => resp.json())
-    .then((data)=> setSpendings(data))}, []);
+    .then((data)=> setSpendings(data))}, [user]);
 
     //Redirects to user to login page on refresh
     if (!user)  {return <Redirect to ="/"/>}    

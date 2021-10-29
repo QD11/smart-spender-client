@@ -19,6 +19,7 @@ function App() {
     .then(resp => resp.json())
     .then((data) => setCategories(data))}, [])
 
+
     return (
         <div>
             <Switch>
@@ -60,7 +61,7 @@ function App() {
                     </DivSplitter>
                 </Route>
 
-                <Route exact path="/contact">
+                {/* <Route exact path="/contact">
                     <NavHeader>
                         < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
                     </NavHeader>
@@ -71,7 +72,7 @@ function App() {
                             <h5> Contact </h5>
                         </MainContent>
                     </DivSplitter>
-                </Route>
+                </Route> */}
 
                 <Route exact path="/signup">
                     <SignUp setUser={setUser}/>

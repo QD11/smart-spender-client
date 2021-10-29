@@ -9,7 +9,6 @@ const Spending = ({spending, deleteSpending, categories, handleUpdateSpending, s
         setIsEditing(false);
         handleUpdateSpending(updatedExpense);
     }
-    console.log(spending.id)
 
     const handleDelete = () => {
         console.log(spending.id)

@@ -25,7 +25,7 @@ const DashboardMain = ({user, spendings}) => {
 
     }, [user, spendings]);
 
-    console.log(sumEachCategory)
+
 
     
     //Redirects to user to login page on refresh
@@ -82,10 +82,26 @@ const BigDiv = styled.div`
 `
 
 const PieDiv = styled.div`
-    margin-left: 10em;
+    margin-left: 5em;
     width: 600px;
-    margin-top: 100px;
-    
+    margin-top: 40px;
+    box-shadow: 1px 1px 5px 3px rgb(132 133 132 / 40%);
+    background-color: white;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 625px;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
 `
 
 const SpendingDiv = styled.div`

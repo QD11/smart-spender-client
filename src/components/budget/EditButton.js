@@ -156,10 +156,10 @@ const EditBut = styled(FiEdit)`
     margin-left: 20px;
     background-color: white;
     cursor: pointer;
-    transition: all 0.5s;
-    & :hover {
-        transform: scale(1.5)
-    }
+    // transition: all 0.5s;
+    // & :hover {
+    //     transform: scale(1.5)
+    // }
 `
 
 const StyledInput = styled.input`
