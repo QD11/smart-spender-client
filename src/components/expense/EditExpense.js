@@ -12,7 +12,7 @@ function EditExpense({ spending, onUpdateSpending}) {
   function handleEditForm(e) {
     e.preventDefault();
 
-    fetch(`http://localhost:9292/spending/${id}/edit`, {
+    fetch(`http://localhost:9292/spending/${spending.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
