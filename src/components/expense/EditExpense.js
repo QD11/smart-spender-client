@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from 'styled-components'
 
 function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories}) {
-  console.log(typeof handleExpenseUpdate)
+
   const convertCategoryToCategoryID = (category) => {
     switch (category){
       case 'Housing':
@@ -89,7 +89,7 @@ function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories})
         body: JSON.stringify(formData),
     })
     .then((resp)=>resp.json())
-    .then((updatedSpending) => console.log(updatedSpending))
+    .then((updatedSpending) => handleExpenseUpdate(updatedSpending))
   }
 
 
@@ -108,7 +108,6 @@ function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories})
           <StyledAmo 
             id="amount"
             type="number"
-            min="0.01"
             name="amount"
             value={formData.amount}
             onChange={handleChange}

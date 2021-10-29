@@ -15,12 +15,14 @@ const Expenses = ({user, categories, spendings, setSpendings}) => {
     if (!user)  {return <Redirect to ="/"/>}    
 
     function handleUpdateSpending(updatedSpending) {
+        console.log(updatedSpending)
         const updatedSpendings = spendings.map((spending)=> {
             if (spending.id === updatedSpending.id) {
                 return updatedSpending;                
             } else {
                 return spending;
             }});
+        console.log(updatedSpendings)
             setSpendings(updatedSpendings)
         };
 
@@ -28,6 +30,8 @@ const Expenses = ({user, categories, spendings, setSpendings}) => {
         const updatedSpendings = spendings.filter((spending) => spending.id !== id);
         setSpendings(updatedSpendings)
     }
+
+    console.log(spendings)
 
     return(
         <WholeDiv>

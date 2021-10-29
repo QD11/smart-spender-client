@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import EditExpense from './EditExpense';
 import styled from 'styled-components'
 
-const Spending = ({spending, deleteSpending, categories, handleUpdateSpending, setSpendings}) => {
+const Spending = ({spending, deleteSpending, categories, handleUpdateSpending}) => {
     const[isEditing, setIsEditing] = useState(false);
 
     const handleExpenseUpdate = (updatedExpense) => {

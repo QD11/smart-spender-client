@@ -65,7 +65,8 @@ export default Navbar
 //Styled Components
 const SideNav = styled.div `
     width: 160px;
-    background: #011627;
+    // background: #16354d;
+    background: #16354d;
     position: absolute;
     height: 95vh;
     padding-left: 10px;

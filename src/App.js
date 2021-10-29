@@ -92,7 +92,7 @@ export default App;
 const NavHeader = styled.header`
     color: #eaecef;
     padding: 15px 30px;
-    background: #011627;
+    background: #16354d;
     display: flex;
     height: 40px;
     font-size: 40px;
