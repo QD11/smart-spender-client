@@ -17,7 +17,7 @@ function App() {
     
     useEffect(()=> {fetch("http://localhost:9292/category")
     .then(resp => resp.json())
-    .then((data) => setCategories(data))}, [])
+    .then((data) => setCategories(data))}, [user])
 
 
     return (

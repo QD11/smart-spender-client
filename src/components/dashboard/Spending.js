@@ -2,6 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Spending = ({spending}) => {
+
+    const formatDate = (string) => {
+        const year = string.slice(0,4)
+        const month = string.slice(5,7)
+        const day = string.slice(8,10)
+        return `${month}/${day}/${year}`
+    }
+
     return (
         <CardDiv>
                 <SpanDec>
@@ -11,7 +19,7 @@ const Spending = ({spending}) => {
                     ${spending.amount}
                 </SpanAmo>
                 <SpanDat>
-                    {spending.date}
+                    {formatDate(spending.date)}
                 </SpanDat>
                 <SpanCat>
                     {spending.category}
