@@ -4,12 +4,16 @@ import styled from 'styled-components'
 const SearchBar = ({setSearchValue}) => {
     
     return (
-        <div>
+        <SearchDiv>
             <label>Description</label>
             <SearchText type="text" placeholder="Search description..." onChange={(e) => setSearchValue(e.target.value)}/>
-        </div>
+        </SearchDiv>
     )
 }
+
+const SearchDiv = styled.div`
+    margin-top: -15px;
+`
 
 const SearchText = styled.input`
     width: 80%;

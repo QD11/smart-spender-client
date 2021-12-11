@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTable } from 'react-table'
-import styled from 'styled-components'
 import './table.css'
 
 const ActualTable = ({data, columns}) => {

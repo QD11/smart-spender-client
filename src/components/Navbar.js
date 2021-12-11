@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
 import {MdLogout, MdSpaceDashboard} from 'react-icons/md'
@@ -9,7 +9,7 @@ const linkStyle = {
     textDecoration: "none"
 }
 
-const Navbar = ({show, toggle, setToggle}) => {
+const Navbar = ({show}) => {
 
     // const [toggle, setToggle] = useState() 
 
@@ -95,16 +95,6 @@ const SideA = styled.span`
     }
 `
 
-const SideB = styled.span`
-    color: #eaecef;
-    text-decoration: none;
-    display: block;
-    padding: 10px 10px;
-    border-radius: 6px;
-    margin: 10px;
-    background: white;
-`
-
 const LogOut = styled.span`
     color: #eaecef;
     text-decoration: none;
@@ -124,17 +114,17 @@ const Door = styled(MdLogout)`
 `
 const DashIcon = styled(MdSpaceDashboard)`
     margin-right: 5px;
-    margin-bottom: -2px;
+    margin-bottom: -4.5px;
     font-size: 20px;
 `
 const PigIcon = styled(BsPiggyBankFill)`
     margin-right: 5px;
-    margin-bottom: -2px;
+    margin-bottom: -4.5px;
     font-size: 20px;
 `
 
 const MoneyIcon = styled(FaMoneyBill)`
     margin-right: 5px;
-    margin-bottom: -2px;
+    margin-bottom: -4.5px;
     font-size: 20px;
 `

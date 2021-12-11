@@ -25,9 +25,6 @@ const DashboardMain = ({user, spendings}) => {
 
     }, [user, spendings]);
 
-
-
-    
     //Redirects to user to login page on refresh
     if (!user)  {return <Redirect to ="/"/>}
 

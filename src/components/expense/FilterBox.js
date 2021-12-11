@@ -8,13 +8,17 @@ const FilterBox = ({setSearchValue, categories, setCategoriesFilter, setPriceArr
 
     return (
         <FilterDiv>
-            <h3>Filter</h3>
+            <FilterTitle>Filter</FilterTitle>
             <SearchBar setSearchValue={setSearchValue} />
             <AmountFilter setPriceArray={setPriceArray} />
             <DescriptionCheckBoxes categories={categories} setCategoriesFilter={setCategoriesFilter} />
         </FilterDiv>
     )
 }
+
+const FilterTitle = styled.h2`
+    
+`
 
 const FilterDiv = styled.div`
     box-shadow: 1px 1px 5px 3px rgb(132 133 132 / 40%);
@@ -27,7 +31,7 @@ const FilterDiv = styled.div`
     top: 20px;
     margin-top: 20px;
     width: 225px;
-    height: 370px;
+    height: 361.83px;
 `
 
 export default FilterBox

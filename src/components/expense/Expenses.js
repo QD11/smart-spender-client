@@ -24,11 +24,13 @@ const Expenses = ({user, categories, spendings, setSpendings}) => {
         }
     )    
 
-    console.log(priceArray)
 
-    useEffect(()=> {fetch(`http://localhost:9292/spending/${user.id}`)
-    .then(resp => resp.json())
-    .then((data)=> setSpendings(data))}, [user]);
+    useEffect(()=> {
+        fetch(`http://localhost:9292/spending/${user.id}`)
+        .then(resp => resp.json())
+        .then((data)=> setSpendings(data))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
 
     //Redirects to user to login page on refresh
     if (!user)  {return <Redirect to ="/"/>}    

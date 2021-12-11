@@ -1,14 +1,18 @@
-import React from 'react'
-import {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useHistory} from "react-router-dom";
 import styled from 'styled-components'
 
-const Defaultpage = ({setUser}) => {
+const Defaultpage = ({setUser, user}) => {
     const history = useHistory();
     const [formLogin, setFormLogin] = useState({
             email: '',
             password: ''
         })
+    const [wrongPassword, setWrongPassword] = useState(false)
+
+    useEffect(() => {
+        setWrongPassword(false)
+    }, [user])
 
     const onChangeHandler = (event) => {
         setFormLogin({
@@ -28,10 +32,11 @@ const Defaultpage = ({setUser}) => {
         .then(data => {
             if (data){
                 setUser(data)
+                setWrongPassword(false)
                 history.push("/dashboard")
             }
             else
-                alert("Wrong Password")
+                setWrongPassword(true)
             
         })
     }
@@ -39,8 +44,6 @@ const Defaultpage = ({setUser}) => {
     function handleSignUp(){
         history.push("/signup")
     }
-
-
 
     return (
         <WholeSec>
@@ -50,7 +53,7 @@ const Defaultpage = ({setUser}) => {
             <form onSubmit={onSubmitHandler}>
                 <InputDiv>
                     <InputYe required="required" placeholder="Email" name="email" onChange={onChangeHandler}></InputYe>
-                    <InputYe type="password" placeholder="Password" name="password" required="required" onChange={onChangeHandler}></InputYe>
+                    <InputPa passwordCheck={wrongPassword} type="password" placeholder="Password" name="password" required="required" onChange={onChangeHandler}></InputPa>
                 </InputDiv>
                 <ButDiv>
                     <InputSubmit type="submit"></InputSubmit>
@@ -59,15 +62,15 @@ const Defaultpage = ({setUser}) => {
                     </UpButton>
                 </ButDiv>
             </form>
-            {/* <button onClick={handleSignUp}>
-                Sign Up Here 
-            </button> */}
             </BigDiv>
         </WholeSec>
     )
 } 
 
-const Hname = styled.h1`
+const Hname = styled.h1.attrs(props => ({
+    className: 'hello',
+    name: "a cool H1"
+}))`
     color: white;
     font-size: 50px;
 `
@@ -90,6 +93,13 @@ const InputYe = styled.input`
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 10px;
+`
+
+const InputPa = styled.input`
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    border-color: ${props => props.passwordCheck ? 'red' : null}
 `
 
 const InputDiv = styled.div`
@@ -119,6 +129,7 @@ const BigDiv = styled.div`
     padding: 50px;
     text-align: center;
     background-color: #1b4b6f;
+    height: 375px;
 `
 
 export default Defaultpage

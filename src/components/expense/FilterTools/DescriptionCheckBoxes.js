@@ -17,26 +17,16 @@ const DescriptionCheckBoxes = ({categories, setCategoriesFilter}) => {
         <CategoriesDiv>
                 <CategoriesLabel>Categories</CategoriesLabel>
             <CategoriesCheckBox>
-                {categories.map(category => {
-                    return(
-                        <DescDiv>
-                            <CheckBoxLabelCombo onChangeHandler={onChangeHandler} category={category}/>
-                        </DescDiv>
-                    )
-                })}
+                {categories.map(category => <CheckBoxLabelCombo id={category.id} onChangeHandler={onChangeHandler} category={category}/>)}
             </CategoriesCheckBox>
         </CategoriesDiv>
     )
 }
 
-const DescDiv = styled.div`
-display:flex;
-`
-
 const CategoriesDiv = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 0px;
 `
 
 const CategoriesLabel = styled.label`

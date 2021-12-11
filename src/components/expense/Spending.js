@@ -29,7 +29,7 @@ const Spending = ({spending, deleteSpending, categories, handleUpdateSpending}) 
     return (
         <DivCard>
             {isEditing ?
-                (<EditExpense categories = {categories} spending={spending}
+                (<EditExpense  spending={spending}
                 handleExpenseUpdate = {handleExpenseUpdate} setIsEditing={setIsEditing} categories={categories}/>)
                 :
                 (    
