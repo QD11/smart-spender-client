@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar'
 import styled, { keyframes}  from 'styled-components'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import { Route, Switch, Redirect} from 'react-router-dom'
 import Defaultpage from './components/Defaultpage'
 import Expenses from './components/expense/Expenses'
@@ -17,69 +17,51 @@ function App() {
     
     useEffect(()=> {fetch("http://localhost:9292/category")
     .then(resp => resp.json())
-    .then((data) => setCategories(data))}, [])
-
+    .then((data) => setCategories(data))}, [user])
 
     return (
         <div>
+            {user? 
+                <>
+                    <NavHeader>
+                            < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
+                    </NavHeader>
+                    <Navbar show={showNav} /> 
+                </>
+            : null}
             <Switch>
                 <Route exact path="/dashboard">
-                    <NavHeader>
-                        < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
-                    </NavHeader>
                     <DivSplitter>
-                        <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
                             <DashboardMain user={user} spendings={spendings} />
                         </MainContent>
                     </DivSplitter>
-                </Route>
+                </Route> 
 
                 <Route exact path="/expenses">
-                    <NavHeader>
-                        < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
-                    </NavHeader>
-                    <Navbar show={showNav} />
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
                             <Expenses spendings={spendings} setSpendings={setSpendings} categories = {categories} user={user}/>
                         </MainContent>
                     </DivSplitter>
-                </Route>
+                </Route> 
 
                 <Route exact path="/budget">
-                    <NavHeader>
-                        < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
-                    </NavHeader>
-                    <Navbar show={showNav} />
                     <DivSplitter>
                         <Navbar show={showNav} />
                         <MainContent slideRight={showNav}>
                             <BudgetMain user={user}/>
                         </MainContent>
                     </DivSplitter>
-                </Route>
-
-                {/* <Route exact path="/contact">
-                    <NavHeader>
-                        < HamburgerMenu onClick={() => setShowNav(!showNav)}/>
-                    </NavHeader>
-                    <Navbar show={showNav} />
-                    <DivSplitter>
-                        <Navbar show={showNav} />
-                        <MainContent slideRight={showNav}>
-                            <h5> Contact </h5>
-                        </MainContent>
-                    </DivSplitter>
-                </Route> */}
+                </Route> 
 
                 <Route exact path="/signup">
-                    <SignUp setUser={setUser}/>
+                    <SignUp setUser={setUser} user={user}/>
                 </Route>
 
                 <Route exact path="/">
-                    <Defaultpage setUser={setUser}/>
+                    <Defaultpage setUser={setUser} user={user}/>
                 </Route>
             </Switch>
         </div>

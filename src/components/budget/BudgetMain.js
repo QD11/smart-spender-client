@@ -36,7 +36,7 @@ const BudgetMain = ({user}) => {
         <WholeDiv>
             <TitleDiv>
                 {tableBudgetPlans? <StyledH1>Available Monthly Budget: ${tableBudgetPlans.balance}</StyledH1> : null}
-                {tableBudgetPlans && percentages? <EditButton percentages={percentages} setPercentages={setPercentages} budgetPlans={budgetPlans} tableBudgetPlans={tableBudgetPlans} setTableBudgetPlans={setTableBudgetPlans} setBudgetPlans={setBudgetPlans}/> : null}
+                {tableBudgetPlans && percentages? <EditButton user={user} percentages={percentages} setPercentages={setPercentages} budgetPlans={budgetPlans} tableBudgetPlans={tableBudgetPlans} setTableBudgetPlans={setTableBudgetPlans} setBudgetPlans={setBudgetPlans}/> : null}
             </TitleDiv>
             <ContentDiv>
                 <OtherDiv>

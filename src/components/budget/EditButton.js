@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Popup from 'reactjs-popup'
-import {FiEdit} from 'react-icons/fi'
+import {BiEdit} from 'react-icons/bi'
 
-const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudgetPlans, budgetPlans, setBudgetPlans}) => {
+const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudgetPlans, budgetPlans, setBudgetPlans, user}) => {
     const [formData, setFormData] = useState({
         balance: "",
         housing_percentage: "",
@@ -15,6 +15,9 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
         discretionary_percentage: "",
         other_percentage: ""
     })
+
+
+    const [percentageCheck, setPercentageCheck] = useState(false)
 
     useEffect(() => {
         setFormData(formData => {
@@ -31,15 +34,16 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
                 other_percentage: tableBudgetPlans.other_percentage
             })
         })
-    }, [])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user])
 
     const onChangeHandler = (event) => {
-        setFormData((formData) => {
-            return ({
+        setFormData((formData) => ({
                 ...formData,
                 [event.target.name] : parseFloat(event.target.value)
             })
-        })
+        )
+        console.log(Object.values(formData).reduce((a, b) => a + b)-formData.balance)
     }
 
     //imma cheat
@@ -52,8 +56,6 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
         .then(resp => resp.json())
         .then(data => {
             setTableBudgetPlans(data)
-            /////////////////////////////
-            console.log(data)
             const newData = {...data}
             delete newData.balance
             delete newData.id
@@ -61,7 +63,6 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
             const arrayPercentages = Object.values(newData)
             const newBudgetPlans = [...budgetPlans]
             const newPercentages = [...percentages]
-            console.log(newPercentages)
             for (let i = 0; i < newBudgetPlans.length; i++) {
                 newBudgetPlans[i].plannedPercentage = arrayPercentages[i]
                 newBudgetPlans[i].plannedMoney = data.balance * arrayPercentages[i]/100
@@ -143,7 +144,7 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
 
 export default EditButton
 
-const EditBut = styled(FiEdit)`
+const EditBut = styled(BiEdit)`
     font-size: 35px;
     box-shadow: 1px 1px 5px 3px rgb(132 133 132 / 40%);
     border-radius: 10px;
@@ -179,7 +180,7 @@ const LabelDiv = styled.div`
 
 const Modal = styled.div`
     font-size: 25px;
-    width: 50vw;
+    width: 500px;
     background-color: white;
     // border: 2px solid black;
     border-radius: 10px;
@@ -191,18 +192,8 @@ const Modal = styled.div`
 
 const ActionsButton = styled.button`
     padding: 15px;
-    border-radius: 10px;
     font-size: 15px;
-    border: 1px solid black;
     cursor: pointer;
-`
-
-const ActionsSubmit = styled.input`
-    // padding: 15px;
-    // border-radius: 12px;
-    // font-size: 15px;
-    // border: 1px solid black;
-    // cursor: pointer;
 `
 
 const Actions = styled.div`

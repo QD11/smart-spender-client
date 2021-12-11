@@ -67,13 +67,11 @@ const LineChart = ({sixMonthData}) => {
             }
         },
         scales: {
-        yAxes: {
-            // beginAtZero: true,
-            callback: function(value) {
-                return `£${value}k`}
-            // }
+            y: {
+                min: 0,
+            }
         }
-    }}
+    }
 
     return (
         <div>

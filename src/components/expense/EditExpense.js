@@ -3,51 +3,51 @@ import styled from 'styled-components'
 
 function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories}) {
 
-  const convertCategoryToCategoryID = (category) => {
-    switch (category){
-      case 'Housing':
-        return 1
-      case 'Transportation':
-        return 2
-      case 'Food':
-        return 3
-      case 'Utility':
-        return 4
-      case 'Insurance':
-        return 5
-      case 'Emergency':
-        return 6
-      case 'Discretionary':
-        return 7
-      case 'Other':
-        return 8
-      default:
-        console.log("NOPE")
-    }
-  }
+  // const convertCategoryToCategoryID = (category) => {
+  //   switch (category){
+  //     case 'Housing':
+  //       return 1
+  //     case 'Transportation':
+  //       return 2
+  //     case 'Food':
+  //       return 3
+  //     case 'Utility':
+  //       return 4
+  //     case 'Insurance':
+  //       return 5
+  //     case 'Emergency':
+  //       return 6
+  //     case 'Discretionary':
+  //       return 7
+  //     case 'Other':
+  //       return 8
+  //     default:
+  //       console.log("NOPE")
+  //   }
+  // }
 
-  const convertCategoryIDToCategory = (category) => {
-    switch (category){
-      case 1:
-        return 'Housing'
-      case 2:
-        return 'Transportation'
-      case 3:  
-        return 'Food'
-      case 4: 
-        return 'Utility'
-      case 5: 
-        return 'Insurance'
-      case 6: 
-        return 'Emergency'
-      case 7: 
-        return 'Discretionary'
-      case 9: 
-        return 'Other'
-      default:
-        console.log("NOPE")
-    }
-  }
+  // const convertCategoryIDToCategory = (category) => {
+  //   switch (category){
+  //     case 1:
+  //       return 'Housing'
+  //     case 2:
+  //       return 'Transportation'
+  //     case 3:  
+  //       return 'Food'
+  //     case 4: 
+  //       return 'Utility'
+  //     case 5: 
+  //       return 'Insurance'
+  //     case 6: 
+  //       return 'Emergency'
+  //     case 7: 
+  //       return 'Discretionary'
+  //     case 9: 
+  //       return 'Other'
+  //     default:
+  //       console.log("NOPE")
+  //   }
+  // }
 
 
   const [formData, setFormData] = useState({
