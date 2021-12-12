@@ -26,7 +26,8 @@ const Expenses = ({user, categories, spendings, setSpendings}) => {
 
 
     useEffect(()=> {
-        fetch(`http://localhost:9292/spending/${user.id}`)
+        // fetch(`http://localhost:9292/spending/${user.id}`)
+        fetch(`/spending/${user.id}`)
         .then(resp => resp.json())
         .then((data)=> setSpendings(data))
         // eslint-disable-next-line react-hooks/exhaustive-deps

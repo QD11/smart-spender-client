@@ -26,7 +26,8 @@ function NewExpense({categories, setSpendings, user}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        fetch(`http://localhost:9292/spending/${user.id}`, configObj)
+        // fetch(`http://localhost:9292/spending/${user.id}`, configObj)
+        fetch(`/spending/${user.id}`, configObj)
         .then((resp) => resp.json())
         .then((expenses) => setSpendings(expenses));  
     };

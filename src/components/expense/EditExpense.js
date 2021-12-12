@@ -81,7 +81,8 @@ function EditExpense({ spending, handleExpenseUpdate, setIsEditing, categories})
   function handleEditForm(e) {
     e.preventDefault();
 
-    fetch(`http://localhost:9292/spending/${spending.id}/edit`, {
+    // fetch(`http://localhost:9292/spending/${spending.id}/edit`, {
+    fetch(`/spending/${spending.id}/edit`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",

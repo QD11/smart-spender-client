@@ -25,7 +25,8 @@ function SignUp({user}) {
 
     const onSubmitHandler = (event) => {
         event.preventDefault()
-        fetch('http://localhost:9292/signup', {
+        // fetch('http://localhost:9292/signup', {
+        fetch('/signup', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formSignup)

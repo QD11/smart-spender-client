@@ -15,9 +15,11 @@ function App() {
     const [categories, setCategories] = useState([])
     const [spendings, setSpendings] = useState([])
     
-    useEffect(()=> {fetch("http://localhost:9292/category")
-    .then(resp => resp.json())
-    .then((data) => setCategories(data))}, [user])
+    useEffect(()=> {
+        fetch("/category")
+        .then(resp => resp.json())
+        .then((data) => setCategories(data))
+    }, [user])
 
     return (
         <div>

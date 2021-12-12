@@ -11,7 +11,8 @@ const BudgetMain = ({user}) => {
     const [tableBudgetPlans, setTableBudgetPlans] = useState(null)
 
     useEffect(() => {
-        fetch(`http://localhost:9292/budgetplan/${user.id}`)
+        // fetch(`http://localhost:9292/budgetplan/${user.id}`)
+        fetch(`/budgetplan/${user.id}`)
         .then(resp => resp.json())
         .then(data => {
             setBudgetPlans(data)
@@ -25,7 +26,8 @@ const BudgetMain = ({user}) => {
                 })
             )
         })
-        fetch(`http://localhost:9292/budgetplan/table/${user.id}`)
+        // fetch(`http://localhost:9292/budgetplan/table/${user.id}`)
+        fetch(`/budgetplan/table/${user.id}`)
         .then(resp => resp.json())
         .then(data => setTableBudgetPlans(data))
     }, [user])

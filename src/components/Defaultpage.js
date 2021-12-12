@@ -23,7 +23,8 @@ const Defaultpage = ({setUser, user}) => {
 
     const onSubmitHandler = (event) => {
         event.preventDefault()
-        fetch('http://localhost:9292/login', {
+        // fetch('http://localhost:9292/login', {
+        fetch('/login', {    
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formLogin)
