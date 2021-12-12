@@ -48,7 +48,7 @@ const EditButton = ({setPercentages, percentages, tableBudgetPlans, setTableBudg
 
     //imma cheat
     const onUpdateHandler = () => {
-        fetch(`http://localhost:9292/budgetplan/${tableBudgetPlans.id}`, {
+        fetch(`https://smart-spender-server.herokuapp.com/budgetplan/${tableBudgetPlans.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formData)

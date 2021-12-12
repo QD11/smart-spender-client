@@ -27,7 +27,7 @@ const Expenses = ({user, categories, spendings, setSpendings}) => {
 
     useEffect(()=> {
         // fetch(`http://localhost:9292/spending/${user.id}`)
-        fetch(`/spending/${user.id}`)
+        fetch(`https://smart-spender-server.herokuapp.com/spending/${user.id}`)
         .then(resp => resp.json())
         .then((data)=> setSpendings(data))
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,14 +37,12 @@ const Expenses = ({user, categories, spendings, setSpendings}) => {
     if (!user)  {return <Redirect to ="/"/>}    
 
     function handleUpdateSpending(updatedSpending) {
-        console.log(updatedSpending)
         const updatedSpendings = spendings.map((spending)=> {
             if (spending.id === updatedSpending.id) {
                 return updatedSpending;                
             } else {
                 return spending;
             }});
-        console.log(updatedSpendings)
             setSpendings(updatedSpendings)
         };
 

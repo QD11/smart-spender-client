@@ -11,9 +11,8 @@ const Spending = ({spending, deleteSpending, categories, handleUpdateSpending}) 
     }
 
     const handleDelete = () => {
-        console.log(spending.id)
         // fetch(`http://localhost:9292/spending/${spending.id}`, {
-        fetch(`/spending/${spending.id}`, {
+        fetch(`https://smart-spender-server.herokuapp.com/spending/${spending.id}`, {
             method: "DELETE",
         });
         deleteSpending(spending.id);

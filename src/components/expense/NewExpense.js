@@ -27,7 +27,7 @@ function NewExpense({categories, setSpendings, user}) {
         e.preventDefault();
         
         // fetch(`http://localhost:9292/spending/${user.id}`, configObj)
-        fetch(`/spending/${user.id}`, configObj)
+        fetch(`https://smart-spender-server.herokuapp.com/spending/${user.id}`, configObj)
         .then((resp) => resp.json())
         .then((expenses) => setSpendings(expenses));  
     };

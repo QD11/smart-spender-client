@@ -12,17 +12,17 @@ const DashboardMain = ({user, spendings}) => {
 
     useEffect(()=> {
         // fetch(`http://localhost:9292/spending/sixmonths/${user.id}`)
-        fetch(`/spending/sixmonths/${user.id}`)
+        fetch(`https://smart-spender-server.herokuapp.com/spending/sixmonths/${user.id}`)
         .then(resp => resp.json())
         .then((data)=> setSixMonthData(data))
 
         // fetch(`http://localhost:9292/spending/recent/${user.id}`)
-        fetch(`/spending/recent/${user.id}`)
+        fetch(`https://smart-spender-server.herokuapp.com/spending/recent/${user.id}`)
         .then(resp => resp.json())
         .then((data => setRecentSpendings(data)))
 
         // fetch(`http://localhost:9292/spending/currentmonthcategories/${user.id}`)
-        fetch(`/spending/currentsixmonthcategories/${user.id}`)
+        fetch(`https://smart-spender-server.herokuapp.com/spending/currentsixmonthcategories/${user.id}`)
         .then(resp => resp.json())
         .then((data => setSumEachCategory(data)))
 

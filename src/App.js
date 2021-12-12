@@ -16,7 +16,7 @@ function App() {
     const [spendings, setSpendings] = useState([])
     
     useEffect(()=> {
-        fetch("/category")
+        fetch("https://smart-spender-server.herokuapp.com/category")
         .then(resp => resp.json())
         .then((data) => setCategories(data))
     }, [user])

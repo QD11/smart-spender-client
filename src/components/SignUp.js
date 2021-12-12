@@ -26,7 +26,7 @@ function SignUp({user}) {
     const onSubmitHandler = (event) => {
         event.preventDefault()
         // fetch('http://localhost:9292/signup', {
-        fetch('/signup', {
+        fetch('https://smart-spender-server.herokuapp.com/signup', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formSignup)

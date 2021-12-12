@@ -12,7 +12,7 @@ const BudgetMain = ({user}) => {
 
     useEffect(() => {
         // fetch(`http://localhost:9292/budgetplan/${user.id}`)
-        fetch(`/budgetplan/${user.id}`)
+        fetch(`https://smart-spender-server.herokuapp.com/budgetplan/${user.id}`)
         .then(resp => resp.json())
         .then(data => {
             setBudgetPlans(data)
@@ -27,7 +27,7 @@ const BudgetMain = ({user}) => {
             )
         })
         // fetch(`http://localhost:9292/budgetplan/table/${user.id}`)
-        fetch(`/budgetplan/table/${user.id}`)
+        fetch(`https://smart-spender-server.herokuapp.com/budgetplan/table/${user.id}`)
         .then(resp => resp.json())
         .then(data => setTableBudgetPlans(data))
     }, [user])
