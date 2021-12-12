@@ -34,6 +34,7 @@ function SignUp({user}) {
         .then(resp => resp.json())
         .then(data => {
             if (data){
+                console.log(data)
                 setEmailCheck(1)
                 setTimeout(() => {
                     history.push("/")
